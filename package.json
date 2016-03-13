@@ -1,0 +1,21 @@
+{
+  "name": "event-planner",
+  "version": "0.0.1",
+  "description": "create events",
+  "main": "server.js",
+  "author": "Aaron",
+  "dependencies": {
+    "angular": "^1.5.0",
+    "angular-formly": "^8.0.0",
+    "angular-formly-templates-bootstrap": "^6.3.0",
+    "angular-ui-bootstrap": "^1.2.4",
+    "api-check": "^7.5.5",
+    "bootstrap": "^3.3.6",
+    "express": "~4.7.2",
+    "express-jwt": "^3.3.0",
+    "express-session": "^1.13.0",
+    "morgan": "~1.2.2",
+    "passport": "^0.3.2",
+    "passport-auth0": "^0.5.1"
+  }
+}

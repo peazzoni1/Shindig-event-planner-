@@ -1,0 +1,73 @@
+#body {
+background: radial-gradient(rgb(255, 255, 255) 40%, rgb(158, 235, 255));
+}
+
+#container {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 450px;
+  height: 300px;
+}
+
+#toolbar {
+}
+
+#profileName {
+margin-left: 10px;
+}
+
+#hr {
+border: none;
+height: 2px;
+background: black;
+}
+
+#content{
+
+}
+
+.ng-scope {
+height: 100%;
+}
+.btn {
+width: 50%;
+margin-left: 25%;
+}
+
+.md-raised {
+width: 100px;
+}
+
+#title {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
+  font-size: 60px;
+
+}
+
+#subTitle {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 35px;
+}
+
+.cards {
+width: 400px;
+background-color: rgba(213, 213, 213, 0.8);
+}
+
+.md-sidenav-left {
+padding-top: 10px;
+padding-left: 10px;
+padding-right: 10px;
+padding-bottom: 5px;
+}
+
+.material-icons.md-40 {
+font-size: 36px;
+margin-top: 10px;
+}

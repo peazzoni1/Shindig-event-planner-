@@ -1,0 +1,79 @@
+<div id="eventBody" ng-controller="MainCtrl">
+<md-toolbar id="toolbar" md-theme="light-blue">
+  <span id="profileName">Welcome, {{auth.profile.name}}</span>
+<md-button class="md-raised" ng-click="logOut()">Logout</md-button>
+</md-toolbar>
+<div flex layout="row">
+  <md-sidenav class="autoscroll md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" tabindex="-1">
+<form name="eventForm">
+  <md-content md-theme="docs-dark" class="autoScroll">
+      <md-input-container md-no-float="" class="md-block">
+        <input ng-model="title" placeholder="Event Title" required="true">
+      </md-input-container>
+    </md-content>
+
+    <md-content class="autoScroll">
+
+      <md-input-container md-no-float="" class="md-block">
+          <input ng-model="email" placeholder="Email" type="email">
+      </md-input-container>
+
+      <md-input-container md-no-float="" class="md-block">
+          <input ng-model="name" placeholder="Host Name"type="text" required="true">
+      </md-input-container>
+
+        <md-input-container md-no-float="" class="md-block">
+          <input ng-model="phone" type="text" placeholder="Phone Number">
+        </md-input-container>
+
+        <md-input-container md-no-float="" class="md-block">
+          <input type="text" g-places-autocomplete ng-model="location" placeholder="Location"/>
+        </md-input-container>
+
+        <md-input-container md-no-float="" class="md-block">
+          <label>Start Time</label>
+          <input ng-model="start" type="time" placeholder="start time" required="true">
+        </md-input-container>
+
+        <md-input-container md-no-float="" class="md-block">
+          <label>End Time</label>
+          <input ng-model="end" type="time" placeholder="end time">
+        </md-input-container>
+
+          <md-datepicker ng-model="date" md-placeholder="Enter date" required="true"></md-datepicker>
+
+        <md-input-container md-no-float="" class="md-block">
+          <textarea ng-model="details" md-maxlength="150" rows="5" md-select-on-focus="" placeholder="Details"></textarea>
+        </md-input-container>
+</form>
+  </md-content>
+ </md-sidenav>
+ <md-button md-theme="light-blue" class="md-fab md-primary md-fab-bottom-center" ng-click="addEvent()" ng-disabled="eventForm.$invalid">
+   <i class="material-icons md-40">add</i>
+ </md-button>
+
+<md-content flex id="content" class="row">
+  <div class="col-md-6" ng-repeat="card in eventCards">
+        <md-card class="cards">
+          <md-card-title>
+            <md-card-title-text>
+              <span class="md-headline">{{card.title}}</span>
+              <span class="md-subhead"><b>Hosted By:</b> {{card.name}}</span>
+                <div id="cardInfo">
+                <span class="md-subhead"><b>Get In Touch:</b></span>
+                <div class="md-subhead"><b>Email:  </b>{{card.email}}</div>
+                <div class="md-subhead"><b>P:  </b>{{card.phone}}</div>
+                </div>
+              <div class="md-subhead"><b>Where:  </b> {{card.location.formatted_address}}</div>
+              <div class="md-subhead"><b>When:  </b> {{card.date | date: 'MM/dd/yyyy'}}
+              <span class="md-subhead">   <b> From:  </b> {{card.start | date: 'h:mm a'}}   <b>To  </b>  {{card.end | date: 'h:mm a'}}</span>
+            </div>
+              <div class="md-subhead"><b>Other Info:  </b> {{card.details}}</div>
+          </md-card-title-text>
+        </md-card-title>
+    <md-button ng-click="remove(card)"><i class="material-icons">delete</i></md-button>
+  </md-card>
+</div>
+</md-content>
+</div>
+</div>
