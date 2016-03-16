@@ -14,6 +14,11 @@ var eventApp = angular.module('eventApp', ['ngRoute', 'ngResource', 'auth0', 'ng
       .backgroundPalette('grey')
       .dark();
 
+  $mdThemingProvider.theme('pink', 'default')
+    .primaryPalette('pink')
+    .accentPalette('light-blue')
+    .dark(); 
+
   $mdThemingProvider.theme('light-blue', 'default')
       .primaryPalette('light-blue')
       .backgroundPalette('grey')

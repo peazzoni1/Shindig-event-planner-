@@ -14,20 +14,75 @@ background: radial-gradient(rgb(255, 255, 255) 40%, rgb(158, 235, 255));
 }
 
 #toolbar {
+color: white;
+}
+
+.toolbarIcons {
+float: right;
+margin-right: 80px;
+}
+
+#content {
+  padding-left: 20px;
+  padding-right: -20px;
+}
+
+#appTitle {
+width: 300px;
+float: left;
+text-align: center;
 }
 
 #profileName {
 margin-left: 10px;
+width: 400px;
+}
+.md-fab {
+float: right;
+background-color: darkblue;
 }
 
-#hr {
+#profileBox {
+height: 100px;
+}
+
+.hr {
 border: none;
-height: 2px;
+height: 1px;
 background: black;
 }
 
-#content{
+#searchBtn {
+display: block;
+width: 50px;
+}
 
+#deleteBtn {
+width: 50px;
+float: right;
+}
+
+#favoriteBtn {
+width: 50px;
+color: red;
+}
+
+#favFilter {
+color: white;
+}
+
+#allFilter {
+
+float: right;
+}
+
+#guestBtn {
+margin-left: 25%;
+}
+
+input.form-control {
+width: 300px;;
+float: right;
 }
 
 .ng-scope {
@@ -46,7 +101,6 @@ width: 100px;
   font-family: 'Roboto', sans-serif;
   font-weight: 100;
   font-size: 60px;
-
 }
 
 #subTitle {
@@ -58,6 +112,7 @@ width: 100px;
 .cards {
 width: 400px;
 background-color: rgba(213, 213, 213, 0.8);
+margin-left: 40px;
 }
 
 .md-sidenav-left {

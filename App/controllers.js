@@ -1,23 +1,49 @@
-eventApp.controller('MainCtrl', ['$scope', '$http', 'auth', 'store', '$localStorage', '$location','$rootScope', function ($scope, $http, auth, store, $localStorage, $location, $rootScope) {
- $scope.auth = auth; 
-  $scope.myDate = new Date();
+eventApp.controller('MainCtrl', ['$scope', '$http', 'auth', 'store', '$localStorage', '$location','$rootScope', '$mdDialog', function ($scope, $http, auth, store, $localStorage, $location, $rootScope, $mdDialog) {
+$scope.auth = auth;
+$scope.guestList = [];
 
-  $scope.minDate = new Date(
-      $scope.myDate.getFullYear(),
-      $scope.myDate.getMonth() - 2,
-      $scope.myDate.getDate());
+$scope.logOut = function () {
+      auth.signout();
+      store.remove('profile');
+      store.remove('token');
+      $location.path('/login');
+}
 
-  $scope.maxDate = new Date(
-      $scope.myDate.getFullYear(),
-      $scope.myDate.getMonth() + 2,
-      $scope.myDate.getDate());
+$scope.toggleSearch = function() {
+      $scope.showSearch = !$scope.showSearch;
+}
 
-  $scope.logOut = function () {
-        auth.signout();
-        store.remove('profile');
-        store.remove('token');
-        $location.path('/login');
-      }
+$scope.favorite = function(card) {
+    card.favicon = "favorite";
+}
+
+$scope.showFavorites;
+$scope.getFavorites = function(card) {
+  if(card.favicon === "favorite") {
+    return card;
+  }
+}
+
+$scope.getAllCards = function() {
+  $scope.showFavorites = " ";
+}
+
+$scope.showPrompt = function(ev) {
+    var confirm = $mdDialog.prompt()
+          .title('New Invite')
+          .textContent('add a guest')
+          .placeholder('guest name')
+          .ariaLabel('Guest name')
+          .targetEvent(ev)
+          .ok('Added!')
+          .cancel('Cancel');
+  $mdDialog.show(confirm).then(function(result) {
+            $scope.guestList.push(result);
+            $scope.status = result + ' has been added to the guest list';
+          }, function() {
+            $scope.status = 'You didn\'t add a guest';
+          });
+  }
 
   $scope.eventCards = $localStorage.eventCards;
 //push form data into object array on submit
@@ -31,7 +57,10 @@ eventApp.controller('MainCtrl', ['$scope', '$http', 'auth', 'store', '$localStor
      "end": $scope.end,
      "location": $scope.location,
      "date": $scope.date,
-     "details": $scope.details
+     "details": $scope.details,
+     "favicon" : "favorite_border",
+     "guests": $scope.guestList,
+     "guestNumber": $scope.guestNumber
    });
    //reset form fields
    $scope.title = "";
@@ -43,7 +72,9 @@ eventApp.controller('MainCtrl', ['$scope', '$http', 'auth', 'store', '$localStor
    $scope.start = "";
    $scope.end = "";
    $scope.details = "";
-   $scope.form.$setUntouched();
+   $scope.guestList = [];
+   $scope.eventForm.$setPristine();
+   $scope.eventForm.$setUntouched();
   }
 //delete cards with trash icon
   $scope.remove = function(card) {

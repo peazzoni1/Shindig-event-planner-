@@ -12,7 +12,7 @@ eventApp.config(function($routeProvider) {
       templateUrl: 'Pages/events.html',
       controller: 'MainCtrl',
       css: 'Styles/events.css',
-      requiresLogin: true
+      //requiresLogin: true
 
     })
 
