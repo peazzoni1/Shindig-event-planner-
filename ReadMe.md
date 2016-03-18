@@ -4,4 +4,4 @@ The app will display event "cards", and the user can delete or favorite each car
 
 The meet-up form has multiple required fields, the add button is disabled until all required fields are filled in.
 
-Login and Authentication is handled through Auth0 and allows users to login in thought github, twitter and google, or sign up with an email. 
+Login and Authentication is handled through Auth0 and allows users to login in thought github, twitter and google, or sign up with an email.
