@@ -17,17 +17,26 @@ var eventApp = angular.module('eventApp', ['ngRoute', 'ngResource', 'auth0', 'ng
   $mdThemingProvider.theme('pink', 'default')
     .primaryPalette('pink')
     .accentPalette('light-blue')
-    .dark(); 
+    .dark();
 
   $mdThemingProvider.theme('light-blue', 'default')
       .primaryPalette('light-blue')
       .backgroundPalette('grey')
   })
 .run(function(auth, store, $rootScope, $location, jwtHelper){
-
-  $rootScope.$on('$routeChangeStart', function() {
-      var token = store.get('token');
-        console.log(token);
-    });
-
+ //keep user logged in on page refresh
+  $rootScope.$on('$locationChangeStart', function() {
+    var token = store.get('token');
+    console.log(token);
+    if (token) {
+      if (!jwtHelper.isTokenExpired(token)) {
+        if (!auth.isAuthenticated) {
+          auth.authenticate(store.get('profile'), token);
+        }
+      } else {
+        // Either show the login page or use the refresh token to get a new idToken
+        $location.path('/');
+      }
+    }
+});
 });

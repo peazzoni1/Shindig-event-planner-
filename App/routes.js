@@ -3,17 +3,16 @@ eventApp.config(function($routeProvider) {
     $routeProvider
 
     .when('/login', {
-      templateUrl: 'Login/login.html',
+      templateUrl: 'App/Login/login.html',
       controller: 'LoginCtrl',
 
     })
 
     .when('/', {
-      templateUrl: 'Pages/events.html',
+      templateUrl: 'App/Pages/events.html',
       controller: 'MainCtrl',
-      css: 'Styles/events.css',
-      //requiresLogin: true
-
+      css: 'App/Styles/events.css',
+      requiresLogin: true
     })
 
 });
