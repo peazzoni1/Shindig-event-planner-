@@ -11,8 +11,8 @@ eventApp.config(function($routeProvider) {
     .when('/', {
       templateUrl: 'App/Pages/events.html',
       controller: 'MainCtrl',
-      css: 'App/Styles/events.css',
-      requiresLogin: true
+      css: 'App/Styles/events.css'
+      //requiresLogin: true
     })
 
 });

@@ -86,6 +86,10 @@ width: 300px;;
 float: right;
 }
 
+#datePicker {
+float: right;
+}
+
 .ng-scope {
 height: 100%;
 }

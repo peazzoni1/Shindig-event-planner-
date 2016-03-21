@@ -47,12 +47,12 @@
         <input type="text" g-places-autocomplete ng-model="location" placeholder="Location" aria-label="location" required="true"/>
       </md-input-container>
 
-      <md-datepicker md-no-float="" class="md-block" ng-model="date" md-placeholder="Enter date" aria-label="data" required="true"></md-datepicker>
-      <br></br>
-
       <md-input-container md-no-float="" class="md-block">
-        <label>Start Time</label>
-        <input ng-model="start" type="time" placeholder="start time" aria-label="start-time" required="true">
+        <span>
+          <label> Time</label>
+          <input ng-model="start" type="time" placeholder="slart time" aria-label="start-time" required="true">
+          <md-datepicker id="datePicker" md-no-float="" class="md-block" ng-model="date" md-placeholder="Enter date" aria-label="data" required="true"></md-datepicker>
+        </span>
       </md-input-container>
 
       <md-input-container md-no-float="" class="md-block">
@@ -62,10 +62,10 @@
 
       <md-input-container md-no-float="" class="md-block">
         <label>Number of Guests</label>
-        <input ng-model="guestNumber" type="number" aria-label="guest-number" placeholder="">
+        <input ng-model="guestNumber" type="number" aria-label="guest-number" placeholder="" required="true">
       </md-input-container>
 
-      <md-input-container md-no-float="" class="md-block">
+      <md-input-container md-no-float="" class="md-block" required="true">
         <md-button id="guestBtn" ng-click="showPrompt($event)" aria-label="add-guest">
           Add Guest
         </md-button>

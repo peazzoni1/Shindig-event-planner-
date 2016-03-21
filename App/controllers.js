@@ -82,8 +82,6 @@ eventApp.controller('MainCtrl', ['$scope', 'auth', 'store', '$localStorage', '$l
        $scope.guestList = [];
        $scope.guestNumber = "";
        $scope.status - "";
-       $scope.eventForm.$setPristine();
-       $scope.eventForm.$setUntouched();
       }
     //delete cards with trash icon
       $scope.remove = function(card) {
