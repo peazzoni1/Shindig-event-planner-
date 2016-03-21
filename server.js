@@ -13,4 +13,4 @@ app.get('/', function(req, res) {
 
 //start server
 app.listen(port);
-console.log('The party started on port ' + port);
+console.log('The party started at ' + port);
