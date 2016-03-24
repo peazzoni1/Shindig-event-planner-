@@ -21,63 +21,91 @@
       <div id="profileName">Welcome, {{auth.profile.name}}</div>
       <span>
         <md-button class="md-raised" aria-label="log-out" ng-click="logOut()">Logout</md-button>
-        <md-button class="md-fab md-accent" aria-label="add-event" ng-click="addEvent()" ng-disabled="eventForm.$invalid">
-          <i class="material-icons md-40">add</i>
-        </md-button>
       </span>
    </md-toolbar>
   <br>
-  <form name="eventForm">
-    <md-content>
-        <md-input-container md-no-float="" class="md-block">
-          <input autofocus="on" ng-model="title" placeholder="Event Title" aria-label="title" required="true">
-        </md-input-container>
-    </md-content>
 
-    <md-content>
+  <md-content>
+    <form name="eventForm">
+
       <md-input-container md-no-float="" class="md-block">
-          <input ng-model="email" placeholder="Email" type="email" aria-label="email" required="true">
+          <input required="" md-autofocus autofocus="" ng-model="title" name="titleField" placeholder="Event Title" aria-label="title" >
+          <div ng-messages="eventForm.titleField.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
       </md-input-container>
 
       <md-input-container md-no-float="" class="md-block">
-          <input ng-model="name" placeholder="Host Name"type="text" aria-label="host-name"required="true">
+          <input ng-model="email" placeholder="Email" name="emailField"type="email" aria-label="email" required="">
+          <div ng-messages="eventForm.emailField.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
       </md-input-container>
 
       <md-input-container md-no-float="" class="md-block">
-        <input type="text" g-places-autocomplete ng-model="location" placeholder="Location" aria-label="location" required="true"/>
+          <input ng-model="name" placeholder="Host Name" name="nameField" type="text" aria-label="host-name" required="">
+          <div ng-messages="eventForm.nameField.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
       </md-input-container>
 
-      <md-datepicker md-no-float="" class="md-block" ng-model="date" md-placeholder="Enter date" aria-label="data" required="true"></md-datepicker>
-      <br></br>
+      <md-input-container md-no-float="" class="md-block">
+          <textarea ng-model="hostBio" md-maxlength="150" rows="5" md-select-on-focus="" aria-label="bio" placeholder="Host Bio"></textarea>
+      </md-input-container>
 
       <md-input-container md-no-float="" class="md-block">
-        <label>Start Time</label>
-        <input ng-model="start" type="time" placeholder="start time" aria-label="start-time" required="true">
+        <input type="text" g-places-autocomplete ng-model="location" name="locationField" placeholder="Location" aria-label="location" required="">
+        <div ng-messages="eventForm.locationField.$error">
+          <div ng-message="required">This is required.</div>
+        </div>
+      </md-input-container>
+
+      <md-input-container md-no-float="" class="md-block">
+          <label>Start Time</label>
+          <input ng-model="start" type="datetime-local" max="{{end}}" name="startField" placeholder="start time" aria-label="start-time" required="">
+          <div ng-messages="eventForm.startField.$error">
+            <div ng-message="required">This is required.</div>
+            <div ng-message="max">hey Marty McFly, your start-time is set after your end-time!</div>
+          </div>
       </md-input-container>
 
       <md-input-container md-no-float="" class="md-block">
         <label>End Time</label>
-        <input ng-model="end" type="time" placeholder="end time" aria-label="end-time" required="true">
+        <input ng-model="end" type="datetime-local" min="{{start}}" placeholder="end time" name="endField" aria-label="end-time" required="">
+        <div ng-messages="eventForm.endField.$error" multiple="">
+          <div ng-message="required">This is required.</div>
+          <div ng-message="min">hey Marty McFly, your end-time is set before your start-time!</div>
+        </div>
       </md-input-container>
 
       <md-input-container md-no-float="" class="md-block">
         <label>Number of Guests</label>
-        <input ng-model="guestNumber" type="number" aria-label="guest-number" placeholder="">
+        <input ng-model="guestNumber" type="number" aria-label="guest-number" placeholder="" required="">
+        <div ng-messages="guestNumber.$error">
+          <div ng-message="required">This is required.</div>
+        </div>
       </md-input-container>
 
-      <md-input-container md-no-float="" class="md-block">
+      <md-input-container md-no-float="" class="md-block" name="guest-list" required="">
         <md-button id="guestBtn" ng-click="showPrompt($event)" aria-label="add-guest">
           Add Guest
         </md-button>
+        <div ng-messages="guest-list.$error">
+          <div ng-message="required">You must add a guest</div>
+        </div>
         <div>{{status}}</div>
         </md-input-container>
 
       <md-input-container md-no-float="" class="md-block">
           <textarea ng-model="details" md-maxlength="150" rows="5" md-select-on-focus="" aria-label="details" placeholder="Details"></textarea>
-        </md-input-container>
+      </md-input-container>
 
-    <hr class="hr">
+      <md-button class="md-fab md-primary" aria-label="add-event" ng-click="addEvent()" ng-disabled="eventForm.$invalid">
+        <i class="material-icons md-40">add</i>
+      </md-button>
+
     </form>
+    </md-content>
  </md-sidenav>
 
 <md-content flex id="content" class="row ">
@@ -87,13 +115,13 @@
             <md-card-title-text>
               <span class="md-headline">{{card.title}}</span>
               <span class="md-subhead"><b>Hosted By:</b> {{card.name}}</span>
-                <div id="cardInfo">
-                <div class="md-subhead"><b>Email:  </b>{{card.email}}</div>
-                <div class="md-subhead"><b>Ph:  </b>{{card.phone}}</div>
-                </div>
+              <div class="md-subhead"><b>Email:  </b>{{card.email}}</div>
+              <div class="md-subhead"><b>Host Bio:  </b>{{card.bio}}</div>
               <div class="md-subhead"><b>Where:  </b> {{card.location.formatted_address}}</div>
-              <div class="md-subhead"><b>When:  </b> {{card.date | date: 'MM/dd/yyyy'}}    <span class="md-subhead"><b>From:  </b> {{card.start | date: 'h:mm a'}}   <b>To  </b>  {{card.end | date: 'h:mm a'}}</span>
-              </div>
+              <div class="md-subhead"><b>When:</b></div>
+              <div class="md-subhead"> {{card.start | date: 'MM/dd/yyyy'}} At {{card.start | date: 'h:mm a'}}</div>
+              <div class="md-subhead"><b>To</b></div>
+              <div class="md-subhead"> {{card.end | date: 'MM/dd/yyyy'}} At {{card.end | date: 'h:mm a'}}</div>
               <div class="md-subhead"><b>Guests:</b> {{card.guests.length}} / {{card.guestNumber}} invited </div>
               <div ng-repeat="guest in card.guests">
                 <span>{{guest}}</span>

@@ -1,4 +1,4 @@
-var eventApp = angular.module('eventApp', ['ngRoute', 'ngResource', 'auth0', 'ngStorage', 'angular-storage', 'angular-jwt','ngMaterial', 'door3.css', 'google.places'])
+var eventApp = angular.module('eventApp', ['ngRoute', 'ngResource', 'auth0', 'ngStorage', 'angular-storage', 'angular-jwt','ngMaterial', 'ngMessages', 'door3.css', 'google.places'])
 .config(function (authProvider, $httpProvider, $locationProvider, $mdThemingProvider) {
   //config for Auth0
   authProvider.init({

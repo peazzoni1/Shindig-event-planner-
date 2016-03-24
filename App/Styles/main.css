@@ -1,5 +1,26 @@
+
+
 #body {
 background: radial-gradient(rgb(255, 255, 255) 40%, rgb(158, 235, 255));
+}
+
+@media screen and (max-width:599px) {
+  #container.col-md-12{
+    width: 300px;
+  }
+  #title {
+    width: 300px;
+    display: block;
+  }
+
+  #subTitle {
+    display: block;
+  }
+
+  #button {
+  width: 25%;
+  display: block;
+  }
 }
 
 #container {
@@ -9,7 +30,7 @@ background: radial-gradient(rgb(255, 255, 255) 40%, rgb(158, 235, 255));
   right: 0;
   bottom: 0;
   left: 0;
-  width: 450px;
+  width: 500px;
   height: 300px;
 }
 
@@ -83,6 +104,10 @@ margin-left: 25%;
 
 input.form-control {
 width: 300px;;
+float: right;
+}
+
+#datePicker {
 float: right;
 }
 

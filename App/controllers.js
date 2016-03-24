@@ -2,6 +2,7 @@ eventApp.controller('MainCtrl', ['$scope', 'auth', 'store', '$localStorage', '$l
     $scope.auth = auth;
     $scope.guestList = [];
     $scope.eventCards = $localStorage.eventCards;
+    $scope.on = "on";
 
     // logout of app
     $scope.logOut = function () {
@@ -14,6 +15,7 @@ eventApp.controller('MainCtrl', ['$scope', 'auth', 'store', '$localStorage', '$l
     // Sidenav toggle
       $scope.toggleSidenav = function(MenuId) {
         $mdSidenav(MenuId).toggle();
+        $scope.on = "on";
       }
 
     //show & hide search bar
@@ -47,7 +49,11 @@ eventApp.controller('MainCtrl', ['$scope', 'auth', 'store', '$localStorage', '$l
               .cancel('Cancel');
       $mdDialog.show(confirm).then(function(result) {
                 $scope.guestList.push(result);
-                $scope.status = result + ' has been added to the guest list';
+
+                if($scope.guestList.length < $scope.guestNumber) {
+                  $scope.status = result + ' has been added to the guest list. But only ' + $scope.guestList.length + ' of ' + $scope.guestNumber + ' guests have been invited.';
+                }
+                else $scope.status = 'All of your guests have been added!';
               }, function() {
                 $scope.status = 'You didn\'t add a guest';
               });
@@ -59,6 +65,7 @@ eventApp.controller('MainCtrl', ['$scope', 'auth', 'store', '$localStorage', '$l
          "title": $scope.title,
          "email": $scope.email,
          "name": $scope.name,
+         "bio": $scope.hostBio,
          "phone": $scope.phone,
          "start": $scope.start,
          "end": $scope.end,
@@ -73,6 +80,7 @@ eventApp.controller('MainCtrl', ['$scope', 'auth', 'store', '$localStorage', '$l
        $scope.title = "";
        $scope.email = "";
        $scope.name = "";
+       $scope.hostBio = "";
        $scope.phone = "";
        $scope.location = "";
        $scope.date = "";
@@ -81,7 +89,8 @@ eventApp.controller('MainCtrl', ['$scope', 'auth', 'store', '$localStorage', '$l
        $scope.details = "";
        $scope.guestList = [];
        $scope.guestNumber = "";
-       $scope.status - "";
+       $scope.status = "";
+       $scope.eventForm.$setUntouched();
       }
     //delete cards with trash icon
       $scope.remove = function(card) {
